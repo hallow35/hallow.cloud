@@ -3,589 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>my cloud</title>
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>hallow</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#ece3d4;
+  --bg2:#f3ebdf;
+  --bg3:#e7ddce;
+  --border:#cdbfaa;
+  --text:#5f6f57;
+  --muted:#7a7d6b;
+  --accent:#8a9b76;
+  --accent2:#6f8a5f;
+  --heading:#3f5138;
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
 
-  body {
-    background-color: #080c14;
-    background-image:
-      radial-gradient(ellipse at 20% 50%, #0a1428 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, #060a12 0%, transparent 50%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.6' fill='white' opacity='0.18'/%3E%3Ccircle cx='3' cy='3' r='0.4' fill='white' opacity='0.1'/%3E%3C/svg%3E");
-    color: #d0dff0;
-    font-family: 'VT323', monospace;
-    font-size: 18px;
-    min-height: 100vh;
-  }
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.logo{font-family:'Lora',serif;font-size:20px;color:var(--heading);letter-spacing:0.02em;}
+.logo span{color:var(--accent2);font-style:italic;}
+nav{display:flex;gap:20px;flex-wrap:wrap;}
+nav a{font-size:13px;color:var(--muted);letter-spacing:0.04em;transition:color 0.15s;}
+nav a:hover{color:var(--heading);text-decoration:none;}
 
-  a { color: #5599dd; text-decoration: none; }
-  a:hover { color: #88ccff; text-decoration: underline; }
+.page{max-width:1080px;margin:0 auto;padding:24px 20px;display:grid;grid-template-columns:220px 1fr 200px;gap:20px;}
 
-  /* HEADER */
-  header {
-    background: linear-gradient(180deg, #0a1830 0%, #0f2244 50%, #0a1830 100%);
-    border-bottom: 3px solid #2255aa;
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .header-matrix {
-    position: absolute; inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(34,85,170,0.08) 18px, rgba(34,85,170,0.08) 19px),
-      repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(34,85,170,0.08) 18px, rgba(34,85,170,0.08) 19px);
-  }
-  .header-inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 20px;
-  }
-  .site-logo {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 13px;
-    color: #88ccff;
-    text-shadow: 2px 2px 0 #001133;
-    line-height: 1.6;
-    padding: 8px;
-    border: 2px solid #2255aa;
-    background: rgba(0,0,0,0.5);
-    white-space: nowrap;
-  }
-  nav { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
-  nav a {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 14px;
-    color: #aaccee;
-    padding: 4px 12px;
-    border: 1px solid #1a3d7a;
-    background: rgba(10,30,80,0.4);
-    transition: all 0.15s;
-  }
-  nav a:hover { background: rgba(34,85,170,0.5); color: #fff; text-decoration: none; border-color: #55aaff; }
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.card-title{font-family:'Lora',serif;font-size:12px;color:var(--accent);letter-spacing:0.1em;text-transform:lowercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border);}
 
-  /* MARQUEE */
-  .marquee-band {
-    background: #0d1e3d;
-    border-top: 2px solid #3366bb;
-    border-bottom: 2px solid #3366bb;
-    padding: 4px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 13px;
-    color: #aaccee;
-    font-family: 'Share Tech Mono', monospace;
-  }
-  .marquee-inner { display: inline-block; animation: marquee 28s linear infinite; }
-  @keyframes marquee { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+.left{grid-column:1;display:flex;flex-direction:column;gap:16px;}
+.center{grid-column:2;display:flex;flex-direction:column;gap:16px;}
+.right{grid-column:3;display:flex;flex-direction:column;gap:16px;}
 
-  /* LAYOUT */
-  .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 16px;
-    display: grid;
-    grid-template-columns: 220px 1fr 200px;
-    gap: 14px;
-  }
+.profile-pic{width:100%;aspect-ratio:1;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:52px;color:var(--border);margin-bottom:14px;}
+.profile-name{font-family:'Lora',serif;font-size:17px;color:var(--heading);margin-bottom:3px;}
+.profile-sub{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);padding:7px 10px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);flex-shrink:0;animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
-  /* PANELS */
-  .panel {
-    background: rgba(8,16,30,0.9);
-    border: 2px solid #1a3d7a;
-    padding: 10px;
-    position: relative;
-  }
-  .panel-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 9px;
-    color: #88ccff;
-    background: #0d1e3d;
-    border: 1px solid #2255aa;
-    padding: 4px 8px;
-    margin: -10px -10px 10px -10px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-  .panel p { font-size: 17px; line-height: 1.5; color: #b0ccee; margin-bottom: 8px; }
+.nav-links{list-style:none;}
+.nav-links li{border-bottom:1px solid var(--border);}
+.nav-links li:last-child{border-bottom:none;}
+.nav-links a{display:block;padding:8px 4px;font-size:13px;color:var(--muted);transition:color 0.12s;}
+.nav-links a:hover{color:var(--heading);text-decoration:none;}
 
-  /* LEFT SIDEBAR */
-  .sidebar-left { grid-column: 1; }
+.social-links{display:flex;flex-direction:column;gap:2px;}
+.social-links a{font-size:12px;color:var(--muted);padding:5px 4px;border-radius:6px;transition:color 0.12s;}
+.social-links a:hover{color:var(--accent);text-decoration:none;}
 
-  .avatar-box {
-    border: 3px solid #2255aa;
-    padding: 4px;
-    margin-bottom: 10px;
-    text-align: center;
-    background: #060c18;
-  }
-  .avatar-placeholder {
-    width: 100%; aspect-ratio: 1;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, #0a1e40, #112255 50%, #071228);
-    font-size: 60px;
-    color: #4488cc;
-  }
+.welcome{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px 22px;}
+.welcome h1{font-family:'Lora',serif;font-size:22px;color:var(--heading);margin-bottom:10px;font-weight:400;}
+.welcome p{color:var(--text);font-size:14px;line-height:1.8;}
 
-  .status-box {
-    background: #060c18;
-    border: 1px solid #1a3d7a;
-    padding: 6px 8px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #7799bb;
-    font-family: 'Share Tech Mono', monospace;
-  }
-  .status-dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: #44ff88;
-    border-radius: 50%;
-    margin-right: 6px;
-    box-shadow: 0 0 6px #44ff88;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.quote-line{font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--muted);padding:4px 0 4px 16px;border-left:2px solid var(--border);min-height:24px;}
+.tw-cursor{display:inline-block;width:1px;height:14px;background:var(--accent);margin-left:1px;vertical-align:middle;animation:blink 1s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-  .nav-list { list-style: none; }
-  .nav-list li { margin-bottom: 4px; }
-  .nav-list a {
-    display: block;
-    padding: 5px 8px;
-    border: 1px solid #112244;
-    background: rgba(10,30,70,0.3);
-    color: #9bbbd9;
-    font-size: 14px;
-    font-family: 'Share Tech Mono', monospace;
-    transition: all 0.1s;
-  }
-  .nav-list a:hover { background: rgba(34,85,170,0.35); color: #fff; text-decoration: none; border-color: #55aaff; padding-left: 14px; }
-  .nav-list a::before { content: "» "; color: #3366bb; }
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 
-  .pixel-divider {
-    height: 3px;
-    background: repeating-linear-gradient(90deg, #2255aa 0px, #2255aa 6px, transparent 6px, transparent 10px);
-    margin: 10px 0;
-  }
+.about-text{font-size:14px;color:var(--text);line-height:1.8;}
+.about-text p+p{margin-top:8px;}
 
-  /* MAIN */
-  .main-content { grid-column: 2; }
+.fav-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.fav-item{font-size:13px;display:flex;align-items:baseline;gap:8px;}
+.fav-label{font-size:11px;color:var(--accent);min-width:60px;text-align:right;flex-shrink:0;font-weight:500;letter-spacing:0.03em;}
+.fav-val{color:var(--heading);}
 
-  .welcome-box {
-    background: linear-gradient(135deg, rgba(8,20,50,0.95), rgba(15,35,80,0.8));
-    border: 2px solid #2255aa;
-    padding: 14px 18px;
-    margin-bottom: 14px;
-  }
-  .welcome-box h1 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 16px;
-    color: #88ccff;
-    text-shadow: 2px 2px 0 #001133;
-    margin-bottom: 10px;
-  }
-  .welcome-box p { font-size: 18px; color: #b0ccee; line-height: 1.6; margin-bottom: 6px; }
+.now{font-size:13px;color:var(--text);list-style:none;}
+.now li{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.now li:last-child{border-bottom:none;}
+.now-tag{font-size:11px;color:var(--accent2);min-width:52px;flex-shrink:0;}
 
-  .notice-box {
-    background: rgba(5,15,35,0.8);
-    border: 2px dashed #3366bb;
-    padding: 10px 14px;
-    margin-bottom: 14px;
-    font-size: 15px;
-    color: #88aace;
-  }
-  .notice-box strong { color: #5599dd; font-family: 'Share Tech Mono', monospace; }
+.mp{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;}
+.mp-head{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-align:center;margin-bottom:12px;}
+.mp-art{width:100%;aspect-ratio:1;border-radius:8px;object-fit:cover;background:var(--bg3);border:1px solid var(--border);}
+.mp-art-ph{width:100%;aspect-ratio:1;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--border);}
+.mp-song{font-family:'Lora',serif;font-size:14px;color:var(--heading);text-align:center;margin-top:10px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mp-artist{font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;}
+.mp-bar-wrap{background:var(--bg3);height:3px;border-radius:2px;margin-bottom:5px;cursor:pointer;}
+.mp-bar{height:100%;border-radius:2px;background:var(--accent2);width:0%;transition:width 0.4s linear;}
+.mp-time{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:10px;}
+.mp-controls{display:flex;align-items:center;justify-content:center;gap:8px;}
+.mp-btn{background:var(--bg3);border:1px solid var(--border);border-radius:7px;color:var(--muted);width:32px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all 0.12s;}
+.mp-btn:hover{color:var(--heading);border-color:var(--accent);}
+.mp-play{width:38px;height:34px;font-size:15px;color:var(--accent2);}
+.mp-dots{display:flex;justify-content:center;gap:5px;margin-top:10px;}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:var(--border);cursor:pointer;transition:background 0.15s;}
+.mp-dot.on{background:var(--accent2);}
 
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .info-box {
-    background: rgba(6,12,24,0.95);
-    border: 2px solid #1a3d7a;
-    padding: 10px;
-  }
-  .info-box h2 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
-    color: #88ccff;
-    border-bottom: 1px solid #112244;
-    padding-bottom: 6px;
-    margin-bottom: 8px;
-  }
-  .info-box p, .info-box li { font-size: 16px; color: #aabbcc; line-height: 1.5; }
-  .info-box ul { list-style: none; padding: 0; }
-  .info-box ul li::before { content: "♦ "; color: #3366bb; }
-
-  /* BLOG */
-  .blog-strip {
-    background: rgba(6,12,24,0.95);
-    border: 2px solid #1a3d7a;
-    padding: 12px;
-    margin-bottom: 14px;
-  }
-  .blog-strip h2 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 9px;
-    color: #88ccff;
-    margin-bottom: 10px;
-  }
-  .blog-posts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-  .blog-card {
-    background: rgba(10,20,44,0.9);
-    border: 1px solid #1a3366;
-    padding: 8px;
-  }
-  .blog-card .date { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #446699; margin-bottom: 4px; }
-  .blog-card .title { font-size: 15px; color: #ccddeeff; line-height: 1.3; margin-bottom: 6px; }
-  .blog-card .tags span {
-    display: inline-block;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    background: #0d1e3d;
-    color: #7799bb;
-    padding: 1px 5px;
-    margin-right: 3px;
-    border: 1px solid #1a3d7a;
-  }
-  .blog-card a { color: #5599dd; font-size: 13px; }
-
-  /* RIGHT SIDEBAR */
-  .sidebar-right { grid-column: 3; }
-
-  .blinkies { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
-  .blinky {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 6px;
-    padding: 3px 5px;
-    border: 1px solid;
-    animation: blink-border 1.2s step-end infinite;
-    line-height: 1.4;
-  }
-  .blinky-blue  { background: #06101e; color: #88ccff; border-color: #2255aa; }
-  .blinky-gray  { background: #0e1218; color: #aabbcc; border-color: #445566; }
-  .blinky-teal  { background: #061818; color: #66ccbb; border-color: #116655; }
-  .blinky-steel { background: #0c1420; color: #99bbdd; border-color: #334466; }
-  @keyframes blink-border { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  .links-box { margin-bottom: 10px; }
-  .links-box a {
-    display: block;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: #7799bb;
-    padding: 3px 0;
-    border-bottom: 1px dotted #1a3366;
-  }
-  .links-box a:hover { color: #88ccff; }
-
-  /* MUSIC PLAYER */
-  .music-player {
-    background: #060c18;
-    border: 2px solid #1a3d7a;
-    padding: 10px;
-    margin-bottom: 8px;
-  }
-  .music-player .mp-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 7px;
-    color: #5599dd;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-  .mp-art {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    display: block;
-    background: linear-gradient(135deg, #0a1e40, #112255);
-    margin-bottom: 8px;
-    border: 1px solid #1a3366;
-    image-rendering: pixelated;
-  }
-  .mp-art-placeholder {
-    width: 100%;
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0a1e40, #112255);
-    font-size: 36px;
-    color: #2255aa;
-    border: 1px solid #1a3366;
-    margin-bottom: 8px;
-  }
-  .mp-songname {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: #aaccee;
-    text-align: center;
-    margin-bottom: 4px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .mp-artist {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: #446699;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-  .mp-progress-wrap {
-    background: #0a1428;
-    height: 4px;
-    border: 1px solid #1a3366;
-    margin-bottom: 6px;
-    cursor: pointer;
-  }
-  .mp-progress-bar {
-    height: 100%;
-    background: #2255aa;
-    width: 0%;
-    transition: width 0.5s linear;
-  }
-  .mp-time {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    color: #446699;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .mp-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .mp-btn {
-    background: #0d1e3d;
-    border: 1px solid #1a3d7a;
-    color: #88ccff;
-    font-size: 16px;
-    width: 32px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-family: monospace;
-    transition: all 0.1s;
-    line-height: 1;
-    padding: 0;
-  }
-  .mp-btn:hover { background: #1a3d7a; color: #fff; border-color: #55aaff; }
-  .mp-btn.play-btn { width: 38px; height: 34px; font-size: 18px; border-color: #2255aa; }
-  .mp-dots {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 8px;
-  }
-  .mp-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #1a3366;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .mp-dot.active { background: #2255aa; }
-
-  /* POLL */
-  .vote-box {
-    background: #060c18;
-    border: 2px solid #1a3366;
-    padding: 8px;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-  .vote-box h3 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 7px;
-    color: #5599dd;
-    margin-bottom: 8px;
-  }
-  .vote-option {
-    display: flex; align-items: center; gap: 6px;
-    margin-bottom: 4px; font-size: 13px; color: #aabbcc;
-    font-family: 'Share Tech Mono', monospace;
-  }
-  .vote-option input[type="radio"] { accent-color: #2255aa; }
-  .vote-btn {
-    margin-top: 6px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 7px;
-    background: #0d1e3d;
-    color: #aaccee;
-    border: 2px solid #2255aa;
-    padding: 5px 12px;
-    cursor: pointer;
-    width: 100%;
-  }
-  .vote-btn:hover { background: #1a3d7a; }
-
-  .neighbor-badges { display: flex; flex-wrap: wrap; gap: 4px; }
-  .neighbor-badge {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    padding: 2px 5px;
-    background: #060c18;
-    border: 1px solid #1a3d7a;
-    color: #7799bb;
-  }
-
-  /* MESSAGE BOARD */
-  .message-section { grid-column: 1 / -1; margin-top: 4px; }
-  .message-section h2 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
-    color: #88ccff;
-    background: #0d1e3d;
-    border: 2px solid #2255aa;
-    padding: 8px 14px;
-    margin-bottom: 12px;
-    text-align: center;
-  }
-  .message-board { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  .leave-message {
-    background: rgba(6,12,24,0.98);
-    border: 2px solid #1a3d7a;
-    padding: 14px;
-  }
-  .leave-message h3 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
-    color: #5599dd;
-    margin-bottom: 12px;
-  }
-  .form-row { margin-bottom: 10px; }
-  .form-row label {
-    display: block;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 13px;
-    color: #446699;
-    margin-bottom: 3px;
-  }
-  .form-row input, .form-row textarea {
-    width: 100%;
-    background: #060c18;
-    border: 1px solid #1a3d7a;
-    color: #d0dff0;
-    padding: 6px 8px;
-    font-family: 'VT323', monospace;
-    font-size: 16px;
-    outline: none;
-    resize: vertical;
-  }
-  .form-row input:focus, .form-row textarea:focus { border-color: #3366bb; }
-  .form-row textarea { min-height: 80px; }
-  .submit-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
-    background: #0d1e3d;
-    color: #aaccee;
-    border: 2px solid #3366bb;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all 0.1s;
-  }
-  .submit-btn:hover { background: #1a3d7a; }
-  .submit-btn:active { transform: scale(0.97); }
-
-  .message-entry {
-    background: rgba(8,16,32,0.95);
-    border: 1px solid #112244;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-  }
-  .message-entry:nth-child(even) { border-color: #1a3355; background: rgba(10,18,36,0.95); }
-  .msg-header {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 6px;
-    border-bottom: 1px dotted #112244;
-    padding-bottom: 4px;
-  }
-  .msg-name { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #5599dd; }
-  .msg-date { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #2a4466; margin-left: auto; }
-  .msg-text { font-size: 16px; color: #aabbcc; line-height: 1.5; }
-  .msg-star { color: #2255aa; font-size: 12px; margin-right: 4px; }
-
-  /* FOOTER */
-  footer {
-    background: #060c18;
-    border-top: 3px solid #1a3d7a;
-    text-align: center;
-    padding: 16px;
-    margin-top: 8px;
-  }
-  footer p { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: #3d5577; margin-bottom: 4px; }
-  .footer-buttons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
-  .footer-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 6px;
-    padding: 4px 8px;
-    border: 1px solid #112244;
-    background: #080e1c;
-    color: #446688;
-  }
-
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: #080c14; }
-  ::-webkit-scrollbar-thumb { background: #1a3366; border: 1px solid #2255aa; }
-  ::-webkit-scrollbar-thumb:hover { background: #2255aa; }
+footer{background:var(--bg2);border-top:1px solid var(--border);text-align:center;padding:20px;margin-top:8px;}
+footer p{font-size:12px;color:var(--muted);}
+footer p span{color:var(--accent);font-family:'Lora',serif;font-style:italic;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-matrix"></div>
-  <div class="header-inner">
-    <div class="site-logo">★ YOUR<br>NAME ★<br><span style="font-size:7px;color:#5577aa;">est. 2024</span></div>
-    <nav>
-      <a href="#">home</a>
-      <a href="#">about me</a>
-      <a href="#">gallery</a>
-      <a href="#">blog</a>
-      <a href="#">links</a>
-      <a href="#">contact</a>
-    </nav>
-  </div>
+  <div class="logo">★ <span>hallow</span></div>
+  
 </header>
 
-<div class="marquee-band">
-  <div class="marquee-inner">
-    ★ welcome to my little corner of the internet ★ feel free to leave a message ★ site best viewed in any browser you like ★ under construction always ★ ♡ thanks for visiting ♡ ★ welcome to my little corner of the internet ★ feel free to leave a message ★ site best viewed in any browser you like ★ under construction always ★ ♡ thanks for visiting ♡ ★
-  </div>
-</div>
-
-<div class="wrapper">
-
-  <!-- LEFT SIDEBAR -->
-  <aside class="sidebar-left">
-    <div class="panel">
-      <div class="panel-title">Hallow35</div>
-      <div class="avatar-box">
-        <div class="avatar-placeholder">☆</div>
-      </div>
-      <div style="text-align:center; margin-bottom:8px;">
-        <div style="font-family:'Press Start 2P',monospace;font-size:10px;color:#88ccff;">hallow</div>
-        <div style="font-size:14px;color:#446688;font-family:'Share Tech Mono',monospace;">he/they · 16</div>
-      </div>
-      <div class="status-box">
-        <span class="status-dot"></span>online
-      </div>
-      <div class="pixel-divider"></div>
-      <ul class="nav-list">
+<div class="page">
+  <aside class="left">
+    <div class="card" style="padding-bottom:16px;">
+      <div class="profile-pic">☽</div>
+      <div class="profile-name">hallow</div>
+      <div class="profile-sub">he/they · 16 · somewhere on earth</div>
+      <div class="status"><span class="dot"></span> online</div>
+    </div>
+    <div class="card">
+      <div class="card-title">pages</div>
+      <ul class="nav-links">
         <li><a href="#">home</a></li>
         <li><a href="#">about me</a></li>
         <li><a href="#">my art</a></li>
@@ -593,302 +126,94 @@
         <li><a href="#">blog</a></li>
         <li><a href="#">playlists</a></li>
         <li><a href="#">links</a></li>
-        <li><a href="#">guestbook</a></li>
       </ul>
-      <div class="pixel-divider"></div>
-      <div class="panel-title" style="margin:0 -10px 8px;">★ my links ★</div>
-      <div class="links-box">
-        <a href="#">♦ tumblr</a>
-        <a href="#">♦ twitter / x</a>
-        <a href="#">♦ instagram</a>
-        <a href="#">♦ youtube</a>
-        <a href="#">♦ spotify</a>
-        <a href="#">♦ letterboxd</a>
-        <a href="#">♦ ko-fi</a>
-      </div>
     </div>
+    
   </aside>
 
-  <!-- MAIN -->
-  <main class="main-content">
-    <div class="welcome-box">
-      <h1>✦ welcome! ✦</h1>
-      <p>hey hi hello! welcome to my little space on the web. this is where i post my art, ramble about things i love, and collect stuff that makes me happy. make yourself at home ✨</p>
-      <p style="font-size:15px;color:#5577aa;">no hate, just vibes. leave a message below if you like! ♡</p>
+  <main class="center">
+    <div class="welcome">
+      <h1>hey, welcome ♡</h1>
+      <p>this is my little corner of the internet. i use it to share art, write about things i love, and collect stuff that makes me happy.</p>
+      <p style="color:var(--muted);font-size:13px;margin-top:10px;">no hate allowed, just good vibes. make yourself at home.</p>
     </div>
 
-    <div class="notice-box">
-      <strong>⚠ notice:</strong> edit this to put whatever you want here — announcements, updates, commission status, etc.
-    </div>
+    <div class="quote-line"><span id="tw"></span><span class="tw-cursor"></span></div>
 
-    <div class="content-grid">
-      <div class="info-box">
-        <h2>✦ about me</h2>
-        <p style="margin-bottom:6px;">your name here · somewhere, earth</p>
-        <ul>
-          <li>artist &amp; maker</li>
-          <li>chronic music obsessive</li>
-          <li>horror &amp; anime fan</li>
-          <li>probably drinking tea</li>
-          <li>collecting things since forever</li>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">about me</div>
+        <div class="about-text">
+          <p>hi! i'm hallow — an artist, music obsessive, and chronic tea drinker. i make things, i collect things, and i spend a lot of time on the internet.</p>
+          <p>into horror, anime, and anything that makes me feel something. probably rewatching something i've already seen ten times.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">favourites</div>
+        <ul class="fav-list">
+          <li class="fav-item"><span class="fav-label">song</span><span class="fav-val">Velvet Ring — Big Thief</span></li>
+          <li class="fav-item"><span class="fav-label">book</span><span class="fav-val">I Have No Mouth, and I Must Scream</span></li>
+          <li class="fav-item"><span class="fav-label">hobby</span><span class="fav-val">collecting minecraft discs</span></li>
+          <li class="fav-item"><span class="fav-label">drink</span><span class="fav-val">tea, always</span></li>
+          <li class="fav-item"><span class="fav-label">genre</span><span class="fav-val">horror</span></li>
+          <li class="fav-item"><span class="fav-label">vibe</span><span class="fav-val">rainy days indoors</span></li>
         </ul>
       </div>
-      <div class="info-box">
-        <h2>✦ currently into</h2>
-        <ul>
-          <li>current hyperfixation: collecting minecraft discs</li>
-          <li>Favorite song at the moment: Velvet Ring</li>
-          <li>Favorite book: I Have No Mouth, and I Must Scream </li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h2>✦ my stuff</h2>
-        <p style="margin-bottom:6px;">link to things you make or care about:</p>
-        <p>→ <a href="#">my art account</a></p>
-        <p>→ <a href="#">my playlist</a></p>
-        <p>→ <a href="#">my shop</a></p>
-        <p>→ <a href="#">my portfolio</a></p>
-      </div>
-      <div class="info-box">
-        <h2>✦ site updates</h2>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:13px;color:#3366aa;">06/15/26</p>
-        <p>launched the site! hello world</p>
-        <br>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:13px;color:#3366aa;">06/10/26</p>
-        <p>started building this thing</p>
-      </div>
     </div>
 
-    <div class="blog-strip">
-      <h2>✦ latest posts</h2>
-      <div class="blog-posts">
-        <div class="blog-card">
-          <div class="date">06/15/26</div>
-          <div class="title">hello world!! first post on here</div>
-          <div class="tags"><span>blog</span><span>intro</span></div>
-          <br><a href="#">read more »</a>
-        </div>
-        <div class="blog-card">
-          <div class="date">06/10/26</div>
-          <div class="title">things i've been listening to lately</div>
-          <div class="tags"><span>music</span></div>
-          <br><a href="#">read more »</a>
-        </div>
-        <div class="blog-card">
-          <div class="date">06/01/26</div>
-          <div class="title">my favourite horror films ranked</div>
-          <div class="tags"><span>film</span><span>lists</span></div>
-          <br><a href="#">read more »</a>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">currently</div>
+      <ul class="now">
+        <li><span class="now-tag">listening</span><span>Velvet Ring on repeat</span></li>
+        <li><span class="now-tag">reading</span><span>I Have No Mouth, and I Must Scream</span></li>
+        <li><span class="now-tag">obsessing</span><span>collecting every minecraft music disc</span></li>
+        <li><span class="now-tag">watching</span><span>something horror, probably</span></li>
+        <li><span class="now-tag">drinking</span><span>tea</span></li>
+      </ul>
     </div>
   </main>
 
-  <!-- RIGHT SIDEBAR -->
-  <aside class="sidebar-right">
-    <div class="panel" style="margin-bottom:12px;">
-      <div class="panel-title">★ blinkies ★</div>
-      <div class="blinkies">
-        <div class="blinky blinky-blue">i ♥ music</div>
-        <div class="blinky blinky-gray">art hoe</div>
-        <div class="blinky blinky-teal">anime</div>
-        <div class="blinky blinky-steel">nature</div>
-        <div class="blinky blinky-blue">horror</div>
-        <div class="blinky blinky-gray">cats!</div>
-        <div class="blinky blinky-teal">reading</div>
-        <div class="blinky blinky-steel">coffee</div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════
-         MUSIC PLAYER
-         To change song names/artists, edit the
-         SONGS array in the <script> at the bottom.
-         Files needed: song1.png, song1.mp3,
-                       song2.png, song2.mp3, etc.
-         Place them in the same folder as this HTML.
-    ═══════════════════════════════════════════ -->
-    <div class="panel music-player" style="margin-bottom:12px;">
-      <div class="mp-title">♪ now playing ♪</div>
-      <img id="mp-art" class="mp-art" src="song1.png" alt="album art"
-           onerror="this.style.display='none';document.getElementById('mp-art-ph').style.display='flex'">
-      <div id="mp-art-ph" class="mp-art-placeholder" style="display:none;">♪</div>
-      <div class="mp-songname" id="mp-songname">song title here</div>
-      <div class="mp-artist" id="mp-artist">artist name</div>
-      <div class="mp-progress-wrap" id="mp-prog-wrap">
-        <div class="mp-progress-bar" id="mp-prog"></div>
-      </div>
-      <div class="mp-time">
-        <span id="mp-cur">0:00</span>
-        <span id="mp-dur">0:00</span>
-      </div>
+  <aside class="right">
+    <div class="mp">
+      <div class="mp-head">now playing</div>
+      <img id="mp-art" class="mp-art" src="song1.png" alt="album art" onerror="this.style.display='none';document.getElementById('mph').style.display='flex'">
+      <div id="mph" class="mp-art-ph" style="display:none;">♪</div>
+      <div class="mp-song" id="mp-song">song title</div>
+      <div class="mp-artist" id="mp-artist">artist</div>
+      <div class="mp-bar-wrap" id="mp-wrap"><div class="mp-bar" id="mp-bar"></div></div>
+      <div class="mp-time"><span id="mp-cur">0:00</span><span id="mp-dur">0:00</span></div>
       <div class="mp-controls">
-        <button class="mp-btn" onclick="prevSong()" title="previous">&#9664;&#9664;</button>
-        <button class="mp-btn play-btn" id="mp-playbtn" onclick="togglePlay()" title="play/pause">&#9654;</button>
-        <button class="mp-btn" onclick="nextSong()" title="next">&#9654;&#9654;</button>
+        <button class="mp-btn" onclick="prev()" aria-label="previous">&#9664;&#9664;</button>
+        <button class="mp-btn mp-play" id="mp-play" onclick="toggle()" aria-label="play/pause">&#9654;</button>
+        <button class="mp-btn" onclick="next()" aria-label="next">&#9654;&#9654;</button>
       </div>
       <div class="mp-dots" id="mp-dots"></div>
     </div>
-
-    <div class="panel" style="margin-bottom:12px;">
-      <div class="vote-box">
-        <h3>poll of the week</h3>
-        <div style="font-size:14px;color:#aaccee;margin-bottom:8px;font-family:'Share Tech Mono',monospace;">favourite season?</div>
-        <div class="vote-option"><input type="radio" name="poll" value="spring"> spring 🌸</div>
-        <div class="vote-option"><input type="radio" name="poll" value="summer"> summer ☀️</div>
-        <div class="vote-option"><input type="radio" name="poll" value="autumn"> autumn 🍂</div>
-        <div class="vote-option"><input type="radio" name="poll" value="winter"> winter ❄️</div>
-        <button class="vote-btn" onclick="this.textContent='voted! ♡'">vote!</button>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-title">★ neighbours ★</div>
-      <div class="neighbor-badges">
-        <div class="neighbor-badge"><a href="#">site one</a></div>
-        <div class="neighbor-badge"><a href="#">site two</a></div>
-        <div class="neighbor-badge"><a href="#">site three</a></div>
-        <div class="neighbor-badge"><a href="#">a friend</a></div>
-        <div class="neighbor-badge"><a href="#">cool site</a></div>
-        <div class="neighbor-badge"><a href="#">add yours!</a></div>
-      </div>
-    </div>
   </aside>
+</div>
+
+<footer>
+  <p>made with care by <span>hallow</span> · est. 2024</p>
+</footer>
 
 <script>
-/* ═══════════════════════════════════════════════════
-   SONGS — edit these to change what plays!
-   Each song needs:
-     title  — displayed name
-     artist — displayed artist
-     src    — the .mp3 file (same folder as this HTML)
-     art    — the .png cover image (same folder)
-═══════════════════════════════════════════════════ */
-const SONGS = [
-  { title: "Velvet Ring",   artist: "Big Theif", src: "song1.mp3", art: "song1.png" },
-  { title: "Homecoming",   artist: "Kanye West, Chris Martin", src: "song2.mp3", art: "song2.png" },
-  { title: "Meow Meow", artist: "heapper", src: "song3.mp3", art: "song3.png" },
-  { title: "Kiss Me Again",  artist: "Vampyx", src: "song4.mp3", art: "song4.png" },
-  { title: "Given Up",  artist: "Linkin Park", src: "song5.mp3", art: "song5.png" },
-];
+const QUOTES=["the internet is made of memories.","collect things that make you feel something.","make stuff even if nobody sees it.","your little corner of the web is yours.","be online the way you want to be."];
+let qi=0,qp=0,del=false;
+const twEl=document.getElementById('tw');
+function tick(){const q=QUOTES[qi];if(!del){twEl.textContent=q.slice(0,++qp);if(qp>=q.length){setTimeout(()=>{del=true;tick();},2800);return;}setTimeout(tick,55);}else{twEl.textContent=q.slice(0,--qp);if(qp<=0){del=false;qi=(qi+1)%QUOTES.length;setTimeout(tick,400);return;}setTimeout(tick,28);}}
+tick();
 
-let current = 0;
-let audio = new Audio();
-let isPlaying = false;
-
-const artEl    = document.getElementById('mp-art');
-const artPh    = document.getElementById('mp-art-ph');
-const nameEl   = document.getElementById('mp-songname');
-const artistEl = document.getElementById('mp-artist');
-const progEl   = document.getElementById('mp-prog');
-const curEl    = document.getElementById('mp-cur');
-const durEl    = document.getElementById('mp-dur');
-const playBtn  = document.getElementById('mp-playbtn');
-const dotsEl   = document.getElementById('mp-dots');
-
-function fmt(s) {
-  if (isNaN(s)) return '0:00';
-  const m = Math.floor(s / 60);
-  const sec = Math.floor(s % 60).toString().padStart(2,'0');
-  return m + ':' + sec;
-}
-
-function buildDots() {
-  dotsEl.innerHTML = '';
-  SONGS.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'mp-dot' + (i === current ? ' active' : '');
-    d.onclick = () => loadSong(i, true);
-    dotsEl.appendChild(d);
-  });
-}
-
-function loadSong(idx, autoplay) {
-  current = (idx + SONGS.length) % SONGS.length;
-  const s = SONGS[current];
-  nameEl.textContent  = s.title;
-  artistEl.textContent = s.artist;
-
-  artEl.style.display = 'block';
-  artPh.style.display = 'none';
-  artEl.src = s.art;
-  artEl.onerror = () => {
-    artEl.style.display = 'none';
-    artPh.style.display = 'flex';
-  };
-
-  audio.pause();
-  audio = new Audio(s.src);
-  audio.addEventListener('timeupdate', () => {
-    const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-    progEl.style.width = pct + '%';
-    curEl.textContent  = fmt(audio.currentTime);
-    durEl.textContent  = fmt(audio.duration);
-  });
-  audio.addEventListener('ended', () => nextSong());
-
-  buildDots();
-  progEl.style.width = '0%';
-  curEl.textContent = '0:00';
-  durEl.textContent = '0:00';
-
-  if (autoplay || isPlaying) {
-    audio.play().catch(() => {});
-    isPlaying = true;
-    playBtn.innerHTML = '&#9646;&#9646;';
-  } else {
-    playBtn.innerHTML = '&#9654;';
-  }
-}
-
-function togglePlay() {
-  if (isPlaying) {
-    audio.pause();
-    isPlaying = false;
-    playBtn.innerHTML = '&#9654;';
-  } else {
-    audio.play().catch(() => {});
-    isPlaying = true;
-    playBtn.innerHTML = '&#9646;&#9646;';
-  }
-}
-
-function nextSong() { loadSong(current + 1, isPlaying); }
-function prevSong() { loadSong(current - 1, isPlaying); }
-
-document.getElementById('mp-prog-wrap').addEventListener('click', function(e) {
-  if (!audio.duration) return;
-  const rect = this.getBoundingClientRect();
-  audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-});
-
-loadSong(0, false);
-
-/* MESSAGE BOARD */
-function postMessage() {
-  const name = document.getElementById('msg-name').value.trim() || 'anonymous';
-  const text = document.getElementById('msg-text').value.trim();
-  if (!text) return;
-  const now = new Date();
-  const date = (now.getMonth()+1).toString().padStart(2,'0') + '/' + now.getDate().toString().padStart(2,'0') + '/' + now.getFullYear();
-  const entry = document.createElement('div');
-  entry.className = 'message-entry';
-  entry.innerHTML = `
-    <div class="msg-header">
-      <span class="msg-star">★</span>
-      <span class="msg-name">${esc(name)}</span>
-      <span class="msg-date">${date}</span>
-    </div>
-    <div class="msg-text">${esc(text)}</div>`;
-  const c = document.getElementById('messages-container');
-  c.insertBefore(entry, c.firstChild);
-  document.getElementById('msg-name').value = '';
-  document.getElementById('msg-text').value = '';
-}
-
-function esc(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+const SONGS=[{title:"Velvet Ring",artist:"Big Thief",src:"song1.mp3",art:"song1.png"},{title:"Homecoming",artist:"Kanye West, Chris Martin",src:"song2.mp3",art:"song2.png"},{title:"Meow Meow",artist:"heapper",src:"song3.mp3",art:"song3.png"},{title:"Kiss Me Again",artist:"Vampyx",src:"song4.mp3",art:"song4.png"},{title:"Given Up",artist:"Linkin Park",src:"song5.mp3",art:"song5.png"}];
+let ci=0,aud=new Audio(),playing=false;
+const artEl=document.getElementById('mp-art'),artPh=document.getElementById('mph'),songEl=document.getElementById('mp-song'),artistEl=document.getElementById('mp-artist'),barEl=document.getElementById('mp-bar'),curEl=document.getElementById('mp-cur'),durEl=document.getElementById('mp-dur'),playBtn=document.getElementById('mp-play'),dotsEl=document.getElementById('mp-dots');
+function fmt(s){if(isNaN(s))return'0:00';return Math.floor(s/60)+':'+Math.floor(s%60).toString().padStart(2,'0');}
+function dots(){dotsEl.innerHTML='';SONGS.forEach((_,i)=>{const d=document.createElement('div');d.className='mp-dot'+(i===ci?' on':'');d.onclick=()=>load(i,true);dotsEl.appendChild(d);});}
+function load(i,auto){ci=(i+SONGS.length)%SONGS.length;const s=SONGS[ci];songEl.textContent=s.title;artistEl.textContent=s.artist;artEl.style.display='block';artPh.style.display='none';artEl.src=s.art;artEl.onerror=()=>{artEl.style.display='none';artPh.style.display='flex';};aud.pause();aud=new Audio(s.src);aud.addEventListener('timeupdate',()=>{const p=aud.duration?(aud.currentTime/aud.duration)*100:0;barEl.style.width=p+'%';curEl.textContent=fmt(aud.currentTime);durEl.textContent=fmt(aud.duration);});aud.addEventListener('ended',()=>next());dots();barEl.style.width='0%';curEl.textContent='0:00';durEl.textContent='0:00';if(auto||playing){aud.play().catch(()=>{});playing=true;playBtn.innerHTML='&#9646;&#9646;';}else{playBtn.innerHTML='&#9654;';}}
+function toggle(){if(playing){aud.pause();playing=false;playBtn.innerHTML='&#9654;';}else{aud.play().catch(()=>{});playing=true;playBtn.innerHTML='&#9646;&#9646;';}}
+function next(){load(ci+1,playing);}
+function prev(){load(ci-1,playing);}
+document.getElementById('mp-wrap').addEventListener('click',function(e){if(!aud.duration)return;const r=this.getBoundingClientRect();aud.currentTime=((e.clientX-r.left)/r.width)*aud.duration;});
+load(0,false);
 </script>
 </body>
 </html>
