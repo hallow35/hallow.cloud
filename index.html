@@ -3,234 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>hallow</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<title>Hallow</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#14160f;
-  --bg2:#1b1e14;
-  --bg3:#21251a;
-  --border:#2e3224;
-  --text:#cec9b0;
-  --muted:#7a7a60;
-  --accent:#b8b49a;
-  --accent2:#7a9a68;
-  --heading:#e8e4cc;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
-a{color:var(--accent);text-decoration:none;}
-a:hover{text-decoration:underline;}
 
-header{background:var(--bg2);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.logo{font-family:'Lora',serif;font-size:20px;color:var(--heading);letter-spacing:0.02em;}
-.logo span{color:var(--accent2);font-style:italic;}
-nav{display:flex;gap:20px;flex-wrap:wrap;}
-nav a{font-size:13px;color:var(--muted);letter-spacing:0.04em;transition:color 0.15s;}
-nav a:hover{color:var(--heading);text-decoration:none;}
+body{
+    background:linear-gradient(135deg,#090909,#111,#1b1b1b);
+    color:white;
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
+}
 
-.page{max-width:1080px;margin:0 auto;padding:24px 20px;display:grid;grid-template-columns:220px 1fr 200px;gap:20px;}
+.container{
+    width:100%;
+    max-width:800px;
+}
 
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;}
-.card-title{font-family:'Lora',serif;font-size:12px;color:var(--accent);letter-spacing:0.1em;text-transform:lowercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.card-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:30px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 40px rgba(0,0,0,.5);
+}
 
-.left{grid-column:1;display:flex;flex-direction:column;gap:16px;}
-.center{grid-column:2;display:flex;flex-direction:column;gap:16px;}
-.right{grid-column:3;display:flex;flex-direction:column;gap:16px;}
+.avatar{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:auto;
+    border:4px solid #7b5cff;
+}
 
-.profile-pic{width:100%;aspect-ratio:1;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:52px;color:var(--border);margin-bottom:14px;}
-.profile-name{font-family:'Lora',serif;font-size:17px;color:var(--heading);margin-bottom:3px;}
-.profile-sub{font-size:12px;color:var(--muted);margin-bottom:12px;}
-.status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);padding:7px 10px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);flex-shrink:0;animation:pulse 2.5s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+h1{
+    text-align:center;
+    margin-top:15px;
+    font-size:42px;
+}
 
-.nav-links{list-style:none;}
-.nav-links li{border-bottom:1px solid var(--border);}
-.nav-links li:last-child{border-bottom:none;}
-.nav-links a{display:block;padding:8px 4px;font-size:13px;color:var(--muted);transition:color 0.12s;}
-.nav-links a:hover{color:var(--heading);text-decoration:none;}
+.tagline{
+    text-align:center;
+    color:#bbbbbb;
+    margin-top:10px;
+    margin-bottom:30px;
+}
 
-.social-links{display:flex;flex-direction:column;gap:2px;}
-.social-links a{font-size:12px;color:var(--muted);padding:5px 4px;border-radius:6px;transition:color 0.12s;}
-.social-links a:hover{color:var(--accent);text-decoration:none;}
+.box{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
 
-.welcome{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px 22px;}
-.welcome h1{font-family:'Lora',serif;font-size:22px;color:var(--heading);margin-bottom:10px;font-weight:400;}
-.welcome p{color:var(--text);font-size:14px;line-height:1.8;}
+.box h2{
+    color:#9c8cff;
+    margin-bottom:15px;
+}
 
-.quote-line{font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--muted);padding:4px 0 4px 16px;border-left:2px solid var(--border);min-height:24px;}
-.tw-cursor{display:inline-block;width:1px;height:14px;background:var(--accent);margin-left:1px;vertical-align:middle;animation:blink 1s step-end infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.box p{
+    line-height:1.7;
+}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+ul{
+    list-style:none;
+}
 
-.about-text{font-size:14px;color:var(--text);line-height:1.8;}
-.about-text p+p{margin-top:8px;}
+ul li{
+    margin:10px 0;
+}
 
-.fav-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
-.fav-item{font-size:13px;display:flex;align-items:baseline;gap:8px;}
-.fav-label{font-size:11px;color:var(--accent);min-width:60px;text-align:right;flex-shrink:0;font-weight:500;letter-spacing:0.03em;}
-.fav-val{color:var(--heading);}
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
 
-.now{font-size:13px;color:var(--text);list-style:none;}
-.now li{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
-.now li:last-child{border-bottom:none;}
-.now-tag{font-size:11px;color:var(--accent2);min-width:52px;flex-shrink:0;}
+.tags span{
+    background:#6d5dfc;
+    padding:8px 14px;
+    border-radius:25px;
+}
 
-.mp{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;}
-.mp-head{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-align:center;margin-bottom:12px;}
-.mp-art{width:100%;aspect-ratio:1;border-radius:8px;object-fit:cover;background:var(--bg3);border:1px solid var(--border);}
-.mp-art-ph{width:100%;aspect-ratio:1;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--border);}
-.mp-song{font-family:'Lora',serif;font-size:14px;color:var(--heading);text-align:center;margin-top:10px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.mp-artist{font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;}
-.mp-bar-wrap{background:var(--bg3);height:3px;border-radius:2px;margin-bottom:5px;cursor:pointer;}
-.mp-bar{height:100%;border-radius:2px;background:var(--accent2);width:0%;transition:width 0.4s linear;}
-.mp-time{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:10px;}
-.mp-controls{display:flex;align-items:center;justify-content:center;gap:8px;}
-.mp-btn{background:var(--bg3);border:1px solid var(--border);border-radius:7px;color:var(--muted);width:32px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all 0.12s;}
-.mp-btn:hover{color:var(--heading);border-color:var(--accent);}
-.mp-play{width:38px;height:34px;font-size:15px;color:var(--accent2);}
-.mp-dots{display:flex;justify-content:center;gap:5px;margin-top:10px;}
-.mp-dot{width:5px;height:5px;border-radius:50%;background:var(--border);cursor:pointer;transition:background 0.15s;}
-.mp-dot.on{background:var(--accent2);}
+.albumArt{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    display:block;
+    margin:20px auto;
+    box-shadow:0 0 25px rgba(0,0,0,.5);
+}
 
-footer{background:var(--bg2);border-top:1px solid var(--border);text-align:center;padding:20px;margin-top:8px;}
-footer p{font-size:12px;color:var(--muted);}
-footer p span{color:var(--accent);font-family:'Lora',serif;font-style:italic;}
+.songTitle{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.artist{
+    text-align:center;
+    color:#cfcfcf;
+    margin-bottom:20px;
+}
+
+audio{
+    width:100%;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#6d5dfc;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#5b49ff;
+}
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#888;
+    font-size:14px;
+}
 </style>
+
 </head>
 <body>
 
-<header>
-  <div class="logo">★ <span>hallow</span></div>
-  <nav>
-    <a href="#">home</a>
-    <a href="#">about</a>
-    <a href="#">gallery</a>
-    <a href="#">blog</a>
-    <a href="#">links</a>
-  </nav>
-</header>
+<div class="container">
 
-<div class="page">
-  <aside class="left">
-    <div class="card" style="padding-bottom:16px;">
-      <div class="profile-pic">☽</div>
-      <div class="profile-name">hallow</div>
-      <div class="profile-sub">he/they · 16 · somewhere on earth</div>
-      <div class="status"><span class="dot"></span> online</div>
-    </div>
-    <div class="card">
-      <div class="card-title">pages</div>
-      <ul class="nav-links">
-        <li><a href="#">home</a></li>
-        <li><a href="#">about me</a></li>
-        <li><a href="#">my art</a></li>
-        <li><a href="#">photography</a></li>
-        <li><a href="#">blog</a></li>
-        <li><a href="#">playlists</a></li>
-        <li><a href="#">links</a></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title">find me</div>
-      <div class="social-links">
-        <a href="#">tumblr</a>
-        <a href="#">twitter / x</a>
-        <a href="#">instagram</a>
-        <a href="#">youtube</a>
-        <a href="#">spotify</a>
-        <a href="#">letterboxd</a>
-        <a href="#">ko-fi</a>
-      </div>
-    </div>
-  </aside>
+<div class="card">
 
-  <main class="center">
-    <div class="welcome">
-      <h1>hey, welcome ♡</h1>
-      <p>this is my little corner of the internet. i use it to share art, write about things i love, and collect stuff that makes me happy.</p>
-      <p style="color:var(--muted);font-size:13px;margin-top:10px;">no hate allowed, just good vibes. make yourself at home.</p>
-    </div>
+<img src="profile.png" class="avatar">
 
-    <div class="quote-line"><span id="tw"></span><span class="tw-cursor"></span></div>
+<h1>Hallow</h1>
 
-    <div class="grid2">
-      <div class="card">
-        <div class="card-title">about me</div>
-        <div class="about-text">
-          <p>hi! i'm hallow — an artist, music obsessive, and chronic tea drinker. i make things, i collect things, and i spend a lot of time on the internet.</p>
-          <p>into horror, anime, and anything that makes me feel something. probably rewatching something i've already seen ten times.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">favourites</div>
-        <ul class="fav-list">
-          <li class="fav-item"><span class="fav-label">song</span><span class="fav-val">Velvet Ring — Big Thief</span></li>
-          <li class="fav-item"><span class="fav-label">book</span><span class="fav-val">I Have No Mouth, and I Must Scream</span></li>
-          <li class="fav-item"><span class="fav-label">hobby</span><span class="fav-val">collecting minecraft discs</span></li>
-          <li class="fav-item"><span class="fav-label">drink</span><span class="fav-val">tea, always</span></li>
-          <li class="fav-item"><span class="fav-label">genre</span><span class="fav-val">horror</span></li>
-          <li class="fav-item"><span class="fav-label">vibe</span><span class="fav-val">rainy days indoors</span></li>
-        </ul>
-      </div>
-    </div>
+<p class="tagline">
+16 • Web Developer • Movie Nerd • Minecraft Player
+</p>
 
-    <div class="card">
-      <div class="card-title">currently</div>
-      <ul class="now">
-        <li><span class="now-tag">listening</span><span>Velvet Ring on repeat</span></li>
-        <li><span class="now-tag">reading</span><span>I Have No Mouth, and I Must Scream</span></li>
-        <li><span class="now-tag">obsessing</span><span>collecting every minecraft music disc</span></li>
-        <li><span class="now-tag">watching</span><span>something horror, probably</span></li>
-        <li><span class="now-tag">drinking</span><span>tea</span></li>
-      </ul>
-    </div>
-  </main>
+<div class="box">
+<h2>About Me</h2>
 
-  <aside class="right">
-    <div class="mp">
-      <div class="mp-head">now playing</div>
-      <img id="mp-art" class="mp-art" src="song1.png" alt="album art" onerror="this.style.display='none';document.getElementById('mph').style.display='flex'">
-      <div id="mph" class="mp-art-ph" style="display:none;">♪</div>
-      <div class="mp-song" id="mp-song">song title</div>
-      <div class="mp-artist" id="mp-artist">artist</div>
-      <div class="mp-bar-wrap" id="mp-wrap"><div class="mp-bar" id="mp-bar"></div></div>
-      <div class="mp-time"><span id="mp-cur">0:00</span><span id="mp-dur">0:00</span></div>
-      <div class="mp-controls">
-        <button class="mp-btn" onclick="prev()" aria-label="previous">&#9664;&#9664;</button>
-        <button class="mp-btn mp-play" id="mp-play" onclick="toggle()" aria-label="play/pause">&#9654;</button>
-        <button class="mp-btn" onclick="next()" aria-label="next">&#9654;&#9654;</button>
-      </div>
-      <div class="mp-dots" id="mp-dots"></div>
-    </div>
-  </aside>
+<p>
+Hey! I'm Hallow, a 16-year-old web developer from the UK.
+Most of my life revolves around my room, where I spend my time
+coding websites, playing Minecraft, listening to music, and
+watching films. I enjoy creating things on the web and learning
+new technologies whenever I can.
+</p>
+
 </div>
 
-<footer>
-  <p>made with care by <span>hallow</span> · est. 2024</p>
-</footer>
+<div class="box">
+
+<h2>Music Player</h2>
+
+<img id="cover" class="albumArt" src="song1.png">
+
+<div class="songTitle" id="songTitle">
+Song Name 1
+</div>
+
+<div class="artist" id="artist">
+Artist 1
+</div>
+
+<audio id="player" controls></audio>
+
+<button onclick="nextSong()">⏭ Skip Song</button>
+
+</div>
+
+<div class="footer">
+Made by Hallow
+</div>
+
+</div>
+
+</div>
 
 <script>
-const QUOTES=["the internet is made of memories.","collect things that make you feel something.","make stuff even if nobody sees it.","your little corner of the web is yours.","be online the way you want to be."];
-let qi=0,qp=0,del=false;
-const twEl=document.getElementById('tw');
-function tick(){const q=QUOTES[qi];if(!del){twEl.textContent=q.slice(0,++qp);if(qp>=q.length){setTimeout(()=>{del=true;tick();},2800);return;}setTimeout(tick,55);}else{twEl.textContent=q.slice(0,--qp);if(qp<=0){del=false;qi=(qi+1)%QUOTES.length;setTimeout(tick,400);return;}setTimeout(tick,28);}}
-tick();
 
-const SONGS=[{title:"Velvet Ring",artist:"Big Thief",src:"song1.mp3",art:"song1.png"},{title:"Homecoming",artist:"Kanye West, Chris Martin",src:"song2.mp3",art:"song2.png"},{title:"Meow Meow",artist:"heapper",src:"song3.mp3",art:"song3.png"},{title:"Kiss Me Again",artist:"Vampyx",src:"song4.mp3",art:"song4.png"},{title:"Given Up",artist:"Linkin Park",src:"song5.mp3",art:"song5.png"}];
-let ci=0,aud=new Audio(),playing=false;
-const artEl=document.getElementById('mp-art'),artPh=document.getElementById('mph'),songEl=document.getElementById('mp-song'),artistEl=document.getElementById('mp-artist'),barEl=document.getElementById('mp-bar'),curEl=document.getElementById('mp-cur'),durEl=document.getElementById('mp-dur'),playBtn=document.getElementById('mp-play'),dotsEl=document.getElementById('mp-dots');
-function fmt(s){if(isNaN(s))return'0:00';return Math.floor(s/60)+':'+Math.floor(s%60).toString().padStart(2,'0');}
-function dots(){dotsEl.innerHTML='';SONGS.forEach((_,i)=>{const d=document.createElement('div');d.className='mp-dot'+(i===ci?' on':'');d.onclick=()=>load(i,true);dotsEl.appendChild(d);});}
-function load(i,auto){ci=(i+SONGS.length)%SONGS.length;const s=SONGS[ci];songEl.textContent=s.title;artistEl.textContent=s.artist;artEl.style.display='block';artPh.style.display='none';artEl.src=s.art;artEl.onerror=()=>{artEl.style.display='none';artPh.style.display='flex';};aud.pause();aud=new Audio(s.src);aud.addEventListener('timeupdate',()=>{const p=aud.duration?(aud.currentTime/aud.duration)*100:0;barEl.style.width=p+'%';curEl.textContent=fmt(aud.currentTime);durEl.textContent=fmt(aud.duration);});aud.addEventListener('ended',()=>next());dots();barEl.style.width='0%';curEl.textContent='0:00';durEl.textContent='0:00';if(auto||playing){aud.play().catch(()=>{});playing=true;playBtn.innerHTML='&#9646;&#9646;';}else{playBtn.innerHTML='&#9654;';}}
-function toggle(){if(playing){aud.pause();playing=false;playBtn.innerHTML='&#9654;';}else{aud.play().catch(()=>{});playing=true;playBtn.innerHTML='&#9646;&#9646;';}}
-function next(){load(ci+1,playing);}
-function prev(){load(ci-1,playing);}
-document.getElementById('mp-wrap').addEventListener('click',function(e){if(!aud.duration)return;const r=this.getBoundingClientRect();aud.currentTime=((e.clientX-r.left)/r.width)*aud.duration;});
-load(0,false);
+const songs = [
+
+{
+title:"Velvet Ring",
+artist:"Big Theif",
+audio:"song1.mp3",
+image:"song1.png"
+},
+
+{
+title:"Homecoming",
+artist:"Kanye West",
+audio:"song2.mp3",
+image:"song2.png"
+},
+
+{
+title:"Meow Meow",
+artist:"heapper",
+audio:"song3.mp3",
+image:"song3.png"
+},
+
+{
+title:"Kiss Me Again",
+artist:"Vampyx",
+audio:"song4.mp3",
+image:"song4.png"
+},
+
+{
+title:"Given Up",
+artist:"Linkin Park",
+audio:"song5.mp3",
+image:"song5.png"
+}
+
+];
+
+let currentSong = 0;
+
+const player = document.getElementById("player");
+const cover = document.getElementById("cover");
+const title = document.getElementById("songTitle");
+const artist = document.getElementById("artist");
+
+function loadSong(index){
+
+cover.src = songs[index].image;
+player.src = songs[index].audio;
+title.innerText = songs[index].title;
+artist.innerText = songs[index].artist;
+
+player.load();
+player.play();
+
+}
+
+function nextSong(){
+
+currentSong++;
+
+if(currentSong >= songs.length){
+currentSong = 0;
+}
+
+loadSong(currentSong);
+
+}
+
+player.addEventListener("ended", nextSong);
+
+loadSong(0);
+
 </script>
+
 </body>
 </html>
