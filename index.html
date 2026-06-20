@@ -1,112 +1,244 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hallow</title>
+
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-margin:0;
-background:#0b0b0f;
-color:#d0d0d0;
-font:13px Verdana,sans-serif;
+    background:#0b0b0f;
+    color:#d4d4d4;
+    font-family:Verdana, sans-serif;
+    font-size:13px;
+    min-height:100vh;
 }
+
+/* Clock */
+
 #clock{
-position:fixed;
-top:10px;
-right:10px;
-border:1px solid #333;
-padding:4px 8px;
-background:#111;
-font-family:Consolas,monospace;
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:#111;
+    border:1px solid #333;
+    padding:6px 10px;
+    font-family:Consolas, monospace;
+    z-index:100;
 }
-.wrapper{
-display:flex;
-gap:16px;
-align-items:flex-start;
-padding:40px 20px;
-max-width:780px;
+
+/* Left Content */
+
+.left{
+    width:320px;
+    margin-left:20px;
+    margin-top:50px;
 }
-.left{width:300px;}
-.right{width:420px;}
+
+/* Spotify pinned far right */
+
+.spotify-area{
+    position:fixed;
+    top:45px;
+    right:10px;
+    width:400px;
+}
+
+/* Boxes */
+
 .box{
-border:1px solid #3a3a3a;
-background:#121212;
-padding:10px;
-margin-bottom:10px;
+    background:#121212;
+    border:1px solid #363636;
+    padding:10px;
+    margin-bottom:10px;
 }
+
+h1{
+    font-size:26px;
+    font-weight:normal;
+    color:white;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+h2{
+    font-size:15px;
+    font-weight:normal;
+    color:white;
+    margin-bottom:8px;
+}
+
 img{
-width:96px;
-height:96px;
-object-fit:cover;
-border:1px solid #555;
-display:block;
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border:1px solid #555;
+    display:block;
 }
-h1,h2{margin:0 0 8px 0;font-weight:normal;color:#fff}
-a{color:#9db8ff;text-decoration:none}
-a:hover{text-decoration:underline}
+
+a{
+    color:#9cb7ff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
 iframe{
-width:100%;
-height:500px;
-border:1px solid #333;
+    width:100%;
+    height:500px;
+    border:1px solid #333;
+}
+
+.subtitle{
+    color:#999;
+}
+
+/* Mobile */
+
+@media(max-width:900px){
+
+    .spotify-area{
+        position:relative;
+        width:auto;
+        top:auto;
+        right:auto;
+        margin:20px;
+    }
+
+    .left{
+        width:auto;
+        margin:50px 20px 20px 20px;
+    }
+
 }
 </style>
 </head>
 <body>
-<div id="clock"></div>
 
-<div class="wrapper">
+<div id="clock">00:00:00 GMT</div>
+
+<!-- LEFT SIDE -->
+
 <div class="left">
-<div class="box">
-<img src="profile.png">
-<h1>Hallow</h1>
-<div>16 • Web Developer • UK</div>
+
+    <div class="box">
+
+        <img src="profile.png">
+
+        <h1>Hallow</h1>
+
+        <div class="subtitle">
+            16 • Web Developer • UK
+        </div>
+
+    </div>
+
+    <div class="box">
+
+        <h2>About Me</h2>
+
+        <p>
+            I'm Hallow, a 16-year-old web developer who spends most of his
+            time building websites, playing Minecraft, watching films,
+            and working on personal projects.
+        </p>
+
+        <br>
+
+        <p>
+            My room is my favourite place in the world and where I spend
+            most of my time. I enjoy fantasy worlds, history, coding,
+            and getting lost in films and games.
+        </p>
+
+    </div>
+
+    <div class="box">
+
+        <h2>Favourite Films</h2>
+
+        <p>
+            Star Wars
+            <br><br>
+
+            Lord of the Rings
+            <br><br>
+
+            Willow
+            <br><br>
+
+            The NeverEnding Story
+        </p>
+
+    </div>
+
+    <div class="box">
+
+        <h2>Projects</h2>
+
+        <a href="https://relentless.cv/" target="_blank">
+            The Relentless Archive (TTRA)
+        </a>
+
+    </div>
+
+    <div class="box">
+
+        <h2>Links</h2>
+
+        <a href="https://twitch.tv/hallow37" target="_blank">
+            Twitch — hallow37
+        </a>
+
+    </div>
+
 </div>
 
-<div class="box">
-<h2>About Me</h2>
-I'm Hallow, a web developer who spends most of my time building websites,
-playing Minecraft, watching films, and working on personal projects.
-My room is my favourite place to relax and create.
-</div>
+<!-- FAR RIGHT SPOTIFY -->
 
-<div class="box">
-<h2>Favourite Films</h2>
-Star Wars<br>
-Lord of the Rings<br>
-Willow<br>
-The NeverEnding Story
-</div>
+<div class="spotify-area">
 
-<div class="box">
-<h2>Projects</h2>
-<a href="https://hitler.cc/" target="_blank">Historical Archive Website TTRA</a>
-</div>
+    <div class="box">
 
-<div class="box">
-<h2>Links</h2>
-<a href="https://twitch.tv/hallow37" target="_blank">twitch.tv/hallow37</a>
-</div>
-</div>
+        <h2>Spotify</h2>
 
-<div class="right">
-<div class="box">
-<h2>Spotify</h2>
-<iframe src="https://open.spotify.com/embed/playlist/0nBQ4QtxDjEi7zUc6FNkf8?utm_source=generator&theme=0&autoplay=1"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-</div>
-</div>
+        <iframe
+            src="https://open.spotify.com/embed/playlist/0nBQ4QtxDjEi7zUc6FNkf8?utm_source=generator&theme=0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+
+    </div>
+
 </div>
 
 <script>
+
 function updateClock(){
-clock.textContent=new Date().toLocaleTimeString('en-GB',{
-timeZone:'Europe/London',
-hour12:false
-})+' GMT';
+
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-GB",{
+            timeZone:"Europe/London",
+            hour12:false
+        }) + " GMT";
+
 }
+
 updateClock();
+
 setInterval(updateClock,1000);
+
 </script>
+
 </body>
 </html>
