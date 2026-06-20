@@ -1,285 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hallow</title>
-
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
 body{
-    background:linear-gradient(135deg,#090909,#111,#1b1b1b);
-    color:white;
-    display:flex;
-    justify-content:center;
-    padding:40px 20px;
+margin:0;
+background:#0b0b0f;
+color:#d0d0d0;
+font:13px Verdana,sans-serif;
 }
-
-.container{
-    width:100%;
-    max-width:800px;
+#clock{
+position:fixed;
+top:10px;
+right:10px;
+border:1px solid #333;
+padding:4px 8px;
+background:#111;
+font-family:Consolas,monospace;
 }
-
-.card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:30px;
-    backdrop-filter:blur(15px);
-    box-shadow:0 0 40px rgba(0,0,0,.5);
+.wrapper{
+display:flex;
+gap:16px;
+align-items:flex-start;
+padding:40px 20px;
+max-width:780px;
 }
-
-.avatar{
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    object-fit:cover;
-    display:block;
-    margin:auto;
-    border:4px solid #7b5cff;
-}
-
-h1{
-    text-align:center;
-    margin-top:15px;
-    font-size:42px;
-}
-
-.tagline{
-    text-align:center;
-    color:#bbbbbb;
-    margin-top:10px;
-    margin-bottom:30px;
-}
-
+.left{width:300px;}
+.right{width:420px;}
 .box{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:20px;
+border:1px solid #3a3a3a;
+background:#121212;
+padding:10px;
+margin-bottom:10px;
 }
-
-.box h2{
-    color:#9c8cff;
-    margin-bottom:15px;
+img{
+width:96px;
+height:96px;
+object-fit:cover;
+border:1px solid #555;
+display:block;
 }
-
-.box p{
-    line-height:1.7;
-}
-
-ul{
-    list-style:none;
-}
-
-ul li{
-    margin:10px 0;
-}
-
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.tags span{
-    background:#6d5dfc;
-    padding:8px 14px;
-    border-radius:25px;
-}
-
-.albumArt{
-    width:250px;
-    height:250px;
-    object-fit:cover;
-    border-radius:15px;
-    display:block;
-    margin:20px auto;
-    box-shadow:0 0 25px rgba(0,0,0,.5);
-}
-
-.songTitle{
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.artist{
-    text-align:center;
-    color:#cfcfcf;
-    margin-bottom:20px;
-}
-
-audio{
-    width:100%;
-}
-
-button{
-    width:100%;
-    margin-top:15px;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#6d5dfc;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    background:#5b49ff;
-}
-
-.footer{
-    text-align:center;
-    margin-top:25px;
-    color:#888;
-    font-size:14px;
+h1,h2{margin:0 0 8px 0;font-weight:normal;color:#fff}
+a{color:#9db8ff;text-decoration:none}
+a:hover{text-decoration:underline}
+iframe{
+width:100%;
+height:500px;
+border:1px solid #333;
 }
 </style>
-
 </head>
 <body>
+<div id="clock"></div>
 
-<div class="container">
-
-<div class="card">
-
-<img src="profile.png" class="avatar">
-
+<div class="wrapper">
+<div class="left">
+<div class="box">
+<img src="profile.png">
 <h1>Hallow</h1>
-
-<p class="tagline">
-16 • Web Developer • Movie Nerd • Minecraft Player
-</p>
+<div>16 • Web Developer • UK</div>
+</div>
 
 <div class="box">
 <h2>About Me</h2>
-
-<p>
-Hey! I'm Hallow, a 16-year-old web developer from the UK.
-Most of my life revolves around my room, where I spend my time
-coding websites, playing Minecraft, listening to music, and
-watching films. I enjoy creating things on the web and learning
-new technologies whenever I can.
-</p>
-
+I'm Hallow, a web developer who spends most of my time building websites,
+playing Minecraft, watching films, and working on personal projects.
+My room is my favourite place to relax and create.
 </div>
 
 <div class="box">
-
-<h2>Music Player</h2>
-
-<img id="cover" class="albumArt" src="song1.png">
-
-<div class="songTitle" id="songTitle">
-Song Name 1
+<h2>Favourite Films</h2>
+Star Wars<br>
+Lord of the Rings<br>
+Willow<br>
+The NeverEnding Story
 </div>
 
-<div class="artist" id="artist">
-Artist 1
+<div class="box">
+<h2>Projects</h2>
+<a href="https://hitler.cc/" target="_blank">Historical Archive Website TTRA</a>
 </div>
 
-<audio id="player" controls></audio>
-
-<button onclick="nextSong()">⏭ Skip Song</button>
-
+<div class="box">
+<h2>Links</h2>
+<a href="https://twitch.tv/hallow37" target="_blank">twitch.tv/hallow37</a>
+</div>
 </div>
 
-<div class="footer">
-Made by Hallow
+<div class="right">
+<div class="box">
+<h2>Spotify</h2>
+<iframe src="https://open.spotify.com/embed/playlist/0nBQ4QtxDjEi7zUc6FNkf8?utm_source=generator&theme=0&autoplay=1"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </div>
-
 </div>
-
 </div>
 
 <script>
-
-const songs = [
-
-{
-title:"Velvet Ring",
-artist:"Big Theif",
-audio:"song1.mp3",
-image:"song1.png"
-},
-
-{
-title:"Homecoming",
-artist:"Kanye West",
-audio:"song2.mp3",
-image:"song2.png"
-},
-
-{
-title:"Meow Meow",
-artist:"heapper",
-audio:"song3.mp3",
-image:"song3.png"
-},
-
-{
-title:"Kiss Me Again",
-artist:"Vampyx",
-audio:"song4.mp3",
-image:"song4.png"
-},
-
-{
-title:"Given Up",
-artist:"Linkin Park",
-audio:"song5.mp3",
-image:"song5.png"
+function updateClock(){
+clock.textContent=new Date().toLocaleTimeString('en-GB',{
+timeZone:'Europe/London',
+hour12:false
+})+' GMT';
 }
-
-];
-
-let currentSong = 0;
-
-const player = document.getElementById("player");
-const cover = document.getElementById("cover");
-const title = document.getElementById("songTitle");
-const artist = document.getElementById("artist");
-
-function loadSong(index){
-
-cover.src = songs[index].image;
-player.src = songs[index].audio;
-title.innerText = songs[index].title;
-artist.innerText = songs[index].artist;
-
-player.load();
-player.play();
-
-}
-
-function nextSong(){
-
-currentSong++;
-
-if(currentSong >= songs.length){
-currentSong = 0;
-}
-
-loadSong(currentSong);
-
-}
-
-player.addEventListener("ended", nextSong);
-
-loadSong(0);
-
+updateClock();
+setInterval(updateClock,1000);
 </script>
-
 </body>
 </html>
